@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.markerhub.mapper")
+@MapperScan("com.litesmilee.mapper")
 public class MybatisPlusConfig {
 
 	@Bean

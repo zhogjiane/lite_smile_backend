@@ -16,12 +16,6 @@ import java.util.Scanner;
 
 // 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
 public class CodeGenerator {
-
-    /**
-     * <p>
-     * 读取控制台内容
-     * </p>
-     */
     public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
@@ -44,19 +38,18 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("我的公众号：MarkerHub");
+        gc.setAuthor("zhogjiane");
         gc.setOpen(false);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         gc.setServiceName("%sService");
         mpg.setGlobalConfig(gc);
-
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/vueadmin?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://localhost:3309/vueadmin?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("admin");
+        dsc.setPassword("123456");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -77,7 +70,6 @@ public class CodeGenerator {
         String templatePath = "/templates/mapper.xml.ftl";
         // 如果模板引擎是 velocity
 //         String templatePath = "/templates/mapper.xml.vm";
-
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
@@ -129,7 +121,7 @@ public class CodeGenerator {
         // 公共父类
         strategy.setSuperControllerClass("BaseController");
         // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id", "created", "updated", "statu");
+        strategy.setSuperEntityColumns("id", "created", "updated", "status");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
 //        strategy.setTablePrefix("sys_");//动态调整
