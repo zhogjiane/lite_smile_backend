@@ -3,38 +3,44 @@ package com.litesmilee.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.litesmilee.service.*;
 import com.litesmilee.utils.RedisUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 基本控制器
+ *
+ * @author liyongdong
+ * @date 2021/09/06
+ */
 public class BaseController {
 
-  @Autowired
+  @Resource
   HttpServletRequest req;
 
-  @Autowired
+  @Resource
   RedisUtil redisUtil;
 
-  @Autowired
+  @Resource
   SysUserService sysUserService;
 
-  @Autowired
+  @Resource
   SysRoleService sysRoleService;
 
-  @Autowired
+  @Resource
   SysMenuService sysMenuService;
 
-  @Autowired
+  @Resource
   SysUserRoleService sysUserRoleService;
 
-  @Autowired
+  @Resource
   SysRoleMenuService sysRoleMenuService;
 
   /**
    * 获取页面
    *
-   * @return
+   * @return {@link Page}
    */
   public Page getPage() {
     int current = ServletRequestUtils.getIntParameter(req, "cuurent", 1);
