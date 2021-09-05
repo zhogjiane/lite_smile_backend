@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zhogjiane
@@ -15,23 +15,23 @@ import lombok.Data;
 @Data
 public class SysUserRole {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+  /**
+   * id
+   */
+  @TableId(value = "id", type = IdType.AUTO)
+  private Long id;
 
-    /**
-     * 用户id
-     */
-    private Long userId;
+  /**
+   * 用户id
+   */
+  private Long userId;
 
-    /**
-     * 角色id
-     */
-    private Long roleId;
+  /**
+   * 角色id
+   */
+  private Long roleId;
 
 
 }

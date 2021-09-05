@@ -16,19 +16,19 @@ import java.util.List;
 @Repository
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
-	/**
-	 * ids得到导航菜单
-	 *
-	 * @param userId 用户id
-	 * @return {@link List}<{@link Long}>
-	 */
-	List<Long> getNavMenuIds(Long userId);
+  /**
+   * ids得到导航菜单
+   *
+   * @param userId 用户id
+   * @return {@link List}<{@link Long}>
+   */
+  List<Long> getNavMenuIds(Long userId);
 
-	/**
-	 * 通过菜单id列表
-	 *
-	 * @param menuId 菜单id
-	 * @return {@link List}<{@link SysUser}>
-	 */
-	List<SysUser> listByMenuId(Long menuId);
+  /**
+   * 通过菜单id列表
+   *
+   * @param menuId 菜单id
+   * @return {@link List}<{@link SysUser}>
+   */
+  List<SysUser> listByMenuId(Long menuId);
 }

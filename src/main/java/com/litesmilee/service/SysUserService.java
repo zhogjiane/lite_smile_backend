@@ -12,42 +12,42 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SysUserService extends IService<SysUser> {
 
-	/**
-	 * 得到用户名
-	 *
-	 * @param username 用户名
-	 * @return {@link SysUser}
-	 */
-	SysUser getByUsername(String username);
+  /**
+   * 得到用户名
+   *
+   * @param username 用户名
+   * @return {@link SysUser}
+   */
+  SysUser getByUsername(String username);
 
-	/**
-	 * 获取用户权限信息
-	 *
-	 * @param userId 用户id
-	 * @return {@link String}
-	 */
-	String getUserAuthorityInfo(Long userId);
+  /**
+   * 获取用户权限信息
+   *
+   * @param userId 用户id
+   * @return {@link String}
+   */
+  String getUserAuthorityInfo(Long userId);
 
-	/**
-	 * 明确用户权限信息
-	 *
-	 * @param username 用户名
-	 */
-	void clearUserAuthorityInfo(String username);
+  /**
+   * 明确用户权限信息
+   *
+   * @param username 用户名
+   */
+  void clearUserAuthorityInfo(String username);
 
-	/**
-	 * 明确用户id权威信息的作用
-	 *
-	 * @param roleId 角色id
-	 */
-	void clearUserAuthorityInfoByRoleId(Long roleId);
+  /**
+   * 明确用户id权威信息的作用
+   *
+   * @param roleId 角色id
+   */
+  void clearUserAuthorityInfoByRoleId(Long roleId);
 
-	/**
-	 * 明确用户权限信息菜单id
-	 *
-	 * @param menuId 菜单id
-	 */
-	void clearUserAuthorityInfoByMenuId(Long menuId);
+  /**
+   * 明确用户权限信息菜单id
+   *
+   * @param menuId 菜单id
+   */
+  void clearUserAuthorityInfoByMenuId(Long menuId);
 
 
 }

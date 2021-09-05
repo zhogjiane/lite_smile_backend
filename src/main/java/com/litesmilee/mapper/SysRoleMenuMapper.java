@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  *
  * @author zhogjiane
  * @date 2021/08/22
-
  */
 public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
 

@@ -15,23 +15,23 @@ import lombok.Data;
 @Data
 public class SysRoleMenu {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+  /**
+   * id
+   */
+  @TableId(value = "id", type = IdType.AUTO)
+  private Long id;
 
-    /**
-     * 角色id
-     */
-    private Long roleId;
+  /**
+   * 角色id
+   */
+  private Long roleId;
 
-    /**
-     * 菜单id
-     */
-    private Long menuId;
+  /**
+   * 菜单id
+   */
+  private Long menuId;
 
 
 }

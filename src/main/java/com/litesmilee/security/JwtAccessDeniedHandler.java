@@ -15,20 +15,21 @@ import java.io.IOException;
 @Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
-	@Override
-	public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+  @Override
+  public void handle(HttpServletRequest request, HttpServletResponse response,
+      AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-		response.setContentType("application/json;charset=UTF-8");
-		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+    response.setContentType("application/json;charset=UTF-8");
+    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 
-		ServletOutputStream outputStream = response.getOutputStream();
+    ServletOutputStream outputStream = response.getOutputStream();
 
-		Result result = Result.fail(accessDeniedException.getMessage());
+    Result result = Result.fail(accessDeniedException.getMessage());
 
-		outputStream.write(JSONUtil.toJsonStr(result).getBytes("UTF-8"));
+    outputStream.write(JSONUtil.toJsonStr(result).getBytes("UTF-8"));
 
-		outputStream.flush();
-		outputStream.close();
+    outputStream.flush();
+    outputStream.close();
 
-	}
+  }
 }

@@ -14,12 +14,12 @@ import java.util.List;
  */
 public interface SysRoleService extends IService<SysRole> {
 
-	/**
-	 * 通过id获取角色
-	 *
-	 * @param userId 用户id
-	 * @return {@link List}<{@link SysRole}>
-	 */
-	List<SysRole> listRolesByUserId(Long userId);
+  /**
+   * 通过id获取角色
+   *
+   * @param userId 用户id
+   * @return {@link List}<{@link SysRole}>
+   */
+  List<SysRole> listRolesByUserId(Long userId);
 
 }

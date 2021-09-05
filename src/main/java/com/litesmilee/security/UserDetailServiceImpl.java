@@ -15,29 +15,32 @@ import java.util.List;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-	@Autowired
-	SysUserService sysUserService;
+  @Autowired
+  SysUserService sysUserService;
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		SysUser sysUser = sysUserService.getByUsername(username);
-		if (sysUser == null) {
-			throw new UsernameNotFoundException("用户名或密码不正确");
-		}
-		return new AccountUser(sysUser.getId(), sysUser.getUsername(), sysUser.getPassword(), getUserAuthority(sysUser.getId()));
-	}
+    SysUser sysUser = sysUserService.getByUsername(username);
+    if (sysUser == null) {
+      throw new UsernameNotFoundException("用户名或密码不正确");
+    }
+    return new AccountUser(sysUser.getId(), sysUser.getUsername(), sysUser.getPassword(),
+        getUserAuthority(sysUser.getId()));
+  }
 
-	/**
-	 * 获取用户权限信息（角色、菜单权限）
-	 * @param userId
-	 * @return
-	 */
-	public List<GrantedAuthority> getUserAuthority(Long userId){
+  /**
+   * 获取用户权限信息（角色、菜单权限）
+   *
+   * @param userId
+   * @return
+   */
+  public List<GrantedAuthority> getUserAuthority(Long userId) {
 
-		// 角色(ROLE_admin)、菜单操作权限 sys:user:list
-		String authority = sysUserService.getUserAuthorityInfo(userId);  // ROLE_admin,ROLE_normal,sys:user:list,....
+    // 角色(ROLE_admin)、菜单操作权限 sys:user:list
+    String authority = sysUserService.getUserAuthorityInfo(
+        userId);  // ROLE_admin,ROLE_normal,sys:user:list,....
 
-		return AuthorityUtils.commaSeparatedStringToAuthorityList(authority);
-	}
+    return AuthorityUtils.commaSeparatedStringToAuthorityList(authority);
+  }
 }

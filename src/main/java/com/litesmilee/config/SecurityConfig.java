@@ -13,93 +13,107 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * 安全配置
+ *
+ * @author liyongdong
+ * @date 2021/09/05
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	LoginFailureHandler loginFailureHandler;
+  @Autowired
+  LoginFailureHandler loginFailureHandler;
 
-	@Autowired
-	LoginSuccessHandler loginSuccessHandler;
+  @Autowired
+  LoginSuccessHandler loginSuccessHandler;
 
-	@Autowired
-	CaptchaFilter captchaFilter;
+  @Autowired
+  CaptchaFilter captchaFilter;
 
-	@Autowired
-	JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+  @Autowired
+  JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-	@Autowired
-	JwtAccessDeniedHandler jwtAccessDeniedHandler;
+  @Autowired
+  JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
-	@Autowired
-	UserDetailServiceImpl userDetailService;
+  @Autowired
+  UserDetailServiceImpl userDetailService;
 
-	@Autowired
-	JwtLogoutSuccessHandler jwtLogoutSuccessHandler;
+  @Autowired
+  JwtLogoutSuccessHandler jwtLogoutSuccessHandler;
 
-	@Bean
-	JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
-		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager());
-		return jwtAuthenticationFilter;
-	}
+  @Bean
+  JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
+    JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(
+        authenticationManager());
+    return jwtAuthenticationFilter;
+  }
 
-	@Bean
-	BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+  @Bean
+  BCryptPasswordEncoder bCryptPasswordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-	private static final String[] URL_WHITELIST = {
-			"/login",
-			"/logout",
-			"/captcha",
-			"/favicon.ico",
+  private static final String[] URL_WHITELIST = {
+      "/login",
+      "/logout",
+      "/captcha",
+      "/favicon.ico",
 
-	};
+  };
 
 
+	/**
+	 * 配置
+	 *
+	 * @param http http
+	 * @throws Exception 异常
+	 */
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.cors().and().csrf().disable()
+    http.cors().and().csrf().disable()
 
-				// 登录配置
-				.formLogin()
-				.successHandler(loginSuccessHandler)
-				.failureHandler(loginFailureHandler)
+        // 登录配置
+        .formLogin()
+        .successHandler(loginSuccessHandler)
+        .failureHandler(loginFailureHandler)
 
-				.and()
-				.logout()
-				.logoutSuccessHandler(jwtLogoutSuccessHandler)
+        .and()
+        .logout()
+        .logoutSuccessHandler(jwtLogoutSuccessHandler)
 
-				// 禁用session
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        // 禁用session
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-				// 配置拦截规则
-				.and()
-				.authorizeRequests()
-				.antMatchers(URL_WHITELIST).permitAll()
-				.anyRequest().authenticated()
+        // 配置拦截规则
+        .and()
+        .authorizeRequests()
+        .antMatchers(URL_WHITELIST).permitAll()
+        .anyRequest().authenticated()
 
-				// 异常处理器
-				.and()
-				.exceptionHandling()
-				.authenticationEntryPoint(jwtAuthenticationEntryPoint)
-				.accessDeniedHandler(jwtAccessDeniedHandler)
+        // 异常处理器
+        .and()
+        .exceptionHandling()
+        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+        .accessDeniedHandler(jwtAccessDeniedHandler)
 
-				// 配置自定义的过滤器
-				.and()
-				.addFilter(jwtAuthenticationFilter())
-				.addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class)
+        // 配置自定义的过滤器
+        .and()
+        .addFilter(jwtAuthenticationFilter())
+        .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class)
 
-		;
+    ;
 
-	}
+  }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailService);
-	}
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userDetailService);
+  }
 }

@@ -10,36 +10,37 @@ import javax.servlet.http.HttpServletRequest;
 
 public class BaseController {
 
-	@Autowired
-	HttpServletRequest req;
+  @Autowired
+  HttpServletRequest req;
 
-	@Autowired
-	RedisUtil redisUtil;
+  @Autowired
+  RedisUtil redisUtil;
 
-	@Autowired
-	SysUserService sysUserService;
+  @Autowired
+  SysUserService sysUserService;
 
-	@Autowired
-	SysRoleService sysRoleService;
+  @Autowired
+  SysRoleService sysRoleService;
 
-	@Autowired
-	SysMenuService sysMenuService;
+  @Autowired
+  SysMenuService sysMenuService;
 
-	@Autowired
-	SysUserRoleService sysUserRoleService;
+  @Autowired
+  SysUserRoleService sysUserRoleService;
 
-	@Autowired
-	SysRoleMenuService sysRoleMenuService;
+  @Autowired
+  SysRoleMenuService sysRoleMenuService;
 
-	/**
-	 * 获取页面
-	 * @return
-	 */
-	public Page getPage() {
-		int current = ServletRequestUtils.getIntParameter(req, "cuurent", 1);
-		int size = ServletRequestUtils.getIntParameter(req, "size", 10);
+  /**
+   * 获取页面
+   *
+   * @return
+   */
+  public Page getPage() {
+    int current = ServletRequestUtils.getIntParameter(req, "cuurent", 1);
+    int size = ServletRequestUtils.getIntParameter(req, "size", 10);
 
-		return new Page(current, size);
-	}
+    return new Page(current, size);
+  }
 
 }

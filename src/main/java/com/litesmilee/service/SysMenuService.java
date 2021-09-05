@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author zhogjiane
@@ -16,18 +16,18 @@ import java.util.List;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
-	/**
-	 * 获得当前用户导航
-	 *
-	 * @return {@link List}<{@link SysMenuDto}>
-	 */
-	List<SysMenuDto> getCurrentUserNav();
+  /**
+   * 获得当前用户导航
+   *
+   * @return {@link List}<{@link SysMenuDto}>
+   */
+  List<SysMenuDto> getCurrentUserNav();
 
-	/**
-	 * 树
-	 *
-	 * @return {@link List}<{@link SysMenu}>
-	 */
-	List<SysMenu> tree();
+  /**
+   * 树
+   *
+   * @return {@link List}<{@link SysMenu}>
+   */
+  List<SysMenu> tree();
 
 }
